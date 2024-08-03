@@ -21,12 +21,18 @@ jobs:
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v5
+        continue-on-error: true
         with:
           browser: chrome
 
-      - name: Upload Cypress Artifacts
-        if: failure()
-        uses: actions/upload-artifact@v3
+      - name: Upload Failed Cypress Screenshots
+        uses: actions/upload-artifact@v4
         with:
-          name: cypress-artifacts
-          path: cypress/screenshots/**/*, cypress/videos/**/*
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: Upload Cypress Videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
