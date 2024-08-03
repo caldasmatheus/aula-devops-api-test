@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Ou a versão do Node.js que você está utilizando
+          node-version: '16'
 
       - name: Install Dependencies
         run: npm install
@@ -22,9 +22,8 @@ jobs:
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v5
         with:
-          browser: chrome # Você pode alterar isso para 'firefox' ou 'edge'
+          browser: chrome
 
-      # Opcional: Upload resultados dos testes e screenshots como artefatos
       - name: Upload Cypress Artifacts
         if: failure()
         uses: actions/upload-artifact@v3
